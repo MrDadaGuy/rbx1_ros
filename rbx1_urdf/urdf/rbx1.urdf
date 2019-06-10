@@ -1,9 +1,9 @@
 <robot name="rbx1_urdf">
-  <link name="world"/>
+  <!-- <link name="world"/>
   <joint name="fixed" type="fixed">
     <parent link="world"/>
     <child link="base_link"/>
-  </joint>
+  </joint> -->
   <link name="base_link">
     <inertial>
       <origin xyz="0.034155 -0.20591 -0.049641" rpy="0 0 0" />
@@ -368,7 +368,7 @@
     <mimic joint="gripper_servo_gear_joint" multiplier="1" offset="0"/>
   </joint>
   
-    <link name="pivot_arm_gripper_servo">
+  <link name="pivot_arm_gripper_servo">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <mass value="0.0018597" />
@@ -423,10 +423,11 @@
     </collision>
   </link>
   <joint name="gripper_idol_gear_joint" type="revolute">
-    <origin xyz="-0.024233 -0.013715 -0.00052" rpy="4.71239 0.0 1.5708" />
+    <!-- <origin xyz="-0.024233 -0.013715 -0.00052" rpy="4.71239 0.0 1.5708" /> -->
+    <origin xyz="-0.024233 -0.013715 -0.00052" rpy="1.5708 0.0 1.5708" />
     <parent link="link_6_hand" />
     <child link="gripper_idol_gear" />
-    <axis xyz="0 1 0" />
+    <axis xyz="0 -1 0" />
     <dynamics damping="0.3" friction="0.2" />
     <limit lower="0" upper="1.5707" effort="5" velocity="1" />
   </joint>
@@ -461,12 +462,14 @@
     </collision>
   </link>
   <joint name="tip_gripper_idol_joint" type="revolute">
-    <origin xyz="-0.040206 0 -0.001701" rpy="0.0 -0.5236 -3.1416" />
+    <!-- <origin xyz="-0.040206 0 -0.001701" rpy="0.0 -0.5236 -3.1416" /> -->
+    <!-- <origin xyz="-0.039906 -0.004 -0.0027473" rpy="-3.1416 -1.5569 -2.0392E-12" /> -->
+    <origin xyz="-0.040206 0 -0.001701" rpy="-3.1416 0.5236 -3.1416" />
     <parent link="gripper_idol_gear" />
     <child link="tip_gripper_idol" />
     <axis xyz="0 1 0" />
     <limit lower="0" upper="1.4" effort="5" velocity="1" />
-    <mimic joint="gripper_idol_gear_joint" multiplier="-1" offset="0"/>
+    <mimic joint="gripper_idol_gear_joint" multiplier="1" offset="0"/>
   </joint>
 
   <link name="pivot_arm_gripper_idol">
@@ -497,6 +500,7 @@
     <child link="pivot_arm_gripper_idol" />
     <axis xyz="0 1 0" />
     <limit lower="-1.5" upper="0" effort="5" velocity="1" />
+    <!-- <limit lower="-1" upper="1" effort="5" velocity="1" /> -->
     <mimic joint="gripper_idol_gear_joint" multiplier="1" offset="0"/> 
   </joint>
 
