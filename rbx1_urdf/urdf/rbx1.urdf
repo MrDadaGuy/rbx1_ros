@@ -283,20 +283,21 @@
       </geometry>
     </collision>
   </link>
-  <joint name="joint_6_wrist_hand" type="revolute">
+  <!-- <joint name="joint_6_wrist_hand" type="revolute"> -->
+  <joint name="joint_6_wrist_hand" type="fixed">
     <origin xyz="-0.034 0.0 0.024" rpy="0 0.645772 0" />
     <parent link="link_5_wrist" />
     <child link="link_6_hand" />
     <axis xyz="1 0 0" />
-    <limit lower="-3.141595" upper="3.141595" effort="5" velocity="1" />
+    <!-- <limit lower="-3.141595" upper="3.141595" effort="5" velocity="1" /> -->
   </joint>
- <transmission name="wrist_hand_transmission">
+ <!-- <transmission name="wrist_hand_transmission">
     <type>transmission_interface/SimpleTransmission</type>
     <actuator name="wrist_hand_motor"></actuator>
     <joint name="joint_6_wrist_hand">
       <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
     </joint>
-  </transmission>
+  </transmission> -->
 
   <!-- GRIPPER SERVO -->
    <link name="gripper_servo_gear">
@@ -359,7 +360,8 @@
       </geometry>
     </collision>
   </link>
-  <joint name="tip_gripper_servo_joint" type="revolute">
+  <!-- <joint name="tip_gripper_servo_joint" type="revolute"> -->
+  <joint name="tip_gripper_servo_joint" type="continuous">
     <origin xyz="-0.039906 -0.004 -0.0027473" rpy="-3.1416 -1.5569 -2.0392E-12" />
     <parent link="gripper_servo_gear" />
     <child link="tip_gripper_servo" />
@@ -390,7 +392,8 @@
       </geometry>
     </collision>
   </link>
-  <joint name="pivot_arm_gripper_servo_joint" type="revolute">
+  <!-- <joint name="pivot_arm_gripper_servo_joint" type="revolute"> -->
+  <joint name="pivot_arm_gripper_servo_joint" type="continuous">
     <origin xyz="-0.044253 0.007042 -0.000282" rpy="1.5708 0.0 -1.6308" />
     <parent link="link_6_hand" />
     <child link="pivot_arm_gripper_servo" />
@@ -430,6 +433,7 @@
     <axis xyz="0 -1 0" />
     <dynamics damping="0.3" friction="0.2" />
     <limit lower="0" upper="1.5707" effort="5" velocity="1" />
+    <mimic joint="gripper_servo_gear_joint" multiplier="1" offset="0"/> 
   </joint>
    <transmission name="gripper_idol_gear_transmission">
     <type>transmission_interface/SimpleTransmission</type>
@@ -461,7 +465,8 @@
       </geometry>
     </collision>
   </link>
-  <joint name="tip_gripper_idol_joint" type="revolute">
+  <!-- <joint name="tip_gripper_idol_joint" type="revolute"> -->
+  <joint name="tip_gripper_idol_joint" type="continuous">
     <!-- <origin xyz="-0.040206 0 -0.001701" rpy="0.0 -0.5236 -3.1416" /> -->
     <!-- <origin xyz="-0.039906 -0.004 -0.0027473" rpy="-3.1416 -1.5569 -2.0392E-12" /> -->
     <origin xyz="-0.040206 0 -0.001701" rpy="-3.1416 0.5236 -3.1416" />
@@ -494,7 +499,8 @@
       </geometry>
     </collision>
   </link>
-  <joint name="pivot_arm_gripper_idol_joint" type="revolute">
+  <!-- <joint name="pivot_arm_gripper_idol_joint" type="revolute"> -->
+  <joint name="pivot_arm_gripper_idol_joint" type="continuous">
     <origin xyz="-0.044291 -0.007028 -0.000002" rpy="4.71239 0.0 -1.5708" />
     <parent link="link_6_hand" />
     <child link="pivot_arm_gripper_idol" />
